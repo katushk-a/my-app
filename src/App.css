@@ -1,38 +1,278 @@
-.App {
+.app {
   text-align: center;
+  background-color: rgb(93, 177, 177);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.centered-component{
+  margin: 15% 15%;
+  background-color: white;
+  color: rgb(93, 177, 177);
+  border-radius: 10px;
+  padding: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.centered-component-dark{
+  margin: 15% 15%;
+  color: white;
+  padding: 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.centered-component-dark-up{
+  margin: 5% 15%;
+  color: white;
+  padding: 30px;
+}
+
+.input-field{
+  color: rgb(93, 177, 177);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 12px;
+  border-color: rgb(93, 177, 177);
+  font-weight: bold;
+  border-width: 2px;
+}
+
+button{
+  background-color: rgb(93, 177, 177);
+  color: white;
+  margin: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 12px;
+  border-color: rgb(93, 177, 177);
+  font-weight: bold;
+}
+
+.white-button{
+  background-color: white;
+  color: rgb(93, 177, 177);
+  border-color: white;
+}
+
+form{
+  font-weight: bold;
+}
+
+.workout-plan-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white; 
+  border-radius: 8px;
+  width: 80%; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.day-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; 
+  width: 100%;
+  margin-top: 20px;
+  background-color: #eeeef3;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+
+.set-container {
+  flex-grow: 1;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-left: 4px solid #007bff;
+  background-color: #e0e0e3;
+  border-radius: 5px;
+}
+
+.exercise-container {
+  padding: 8px 0;
+  border-bottom: 1px solid #dee2e6;
+  cursor: pointer; 
+  max-width: 600px; 
+  width: 100%;
+  margin: 0 auto; 
+  transition: background-color 0.3s, height 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+.exercise-container:hover {
+  background-color: #f8f9fa;
+}
+
+.exercise-container, .exercise-details {
+  transition: max-height 0.3s ease-in-out;
+}
+
+.exercise-details {
+  max-height: 0; 
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out; 
+}
+
+.exercise-container.expanded .exercise-details {
+  max-height: 200px;
+}
+
+.exercise-container:last-child {
+  border-bottom: none;
+}
+
+.workout-plan-container h2 {
+  color: #374858;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.workout-plan-container h6 {
+  color: #374858;
+  font-size: .8rem;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.day-container h2 {
+  font-size: 1.4rem;
+  color: #007bff; 
+}
+
+.set-container h3 {
+  font-size: 1.2rem;
+  color: #374858; 
+  margin-bottom: 10px;
+}
+
+.exercise-container p {
+  font-size: 0.9rem;
+  color: #374858; 
+  margin: 2px 0; 
+}
+
+.day-container:hover, .set-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%; 
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: auto;  /* Centers the table by pushing it equally from both sides */
+  margin-right: auto; /* Centers the table by pushing it equally from both sides */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  color: #374858;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 16px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  background-color: #007bff; 
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* Modal overlay styles */
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay to focus on modal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* High z-index to ensure it's on top of other content */
+  padding: 20px; /* Padding to prevent modal from touching the edges */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Modal content box */
+.modal-content {
+  color: #374858;;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: 90%; /* Responsive width */
+  max-width: 800px; /* Maximum width */
+  max-height: 80vh; /* Maximum height to ensure it fits in viewport */
+  overflow-y: auto; /* Allow scrolling within the modal */
+  position: relative;
+}
+
+/* Button to close modal */
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #dc3545; /* Bootstrap's btn-danger background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Modal title and content styles */
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.modal-section {
+  margin-top: 10px;
+}
+
+.modal-section h4 {
+  font-size: 18px;
+  color: #0056b3; /* Bootstrap primary color */
+  margin-bottom: 10px;
+}
+
+.modal-section-details {
+  background-color: #f8f9fa; /* Light background for sections */
+  padding: 10px;
+  border-radius: 5px;
+  font-family: monospace; /* Monospaced font for JSON display */
+}
+
+/* Styling for JSON formatted content */
+pre {
+  white-space: pre-wrap; /* Wraps text */
+  word-break: break-word; /* Breaks text at appropriate points */
+}
+
+
+
+
+
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
 }
